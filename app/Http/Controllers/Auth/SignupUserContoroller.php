@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Models\Department;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Program;
@@ -15,11 +15,12 @@ class SignupUserContoroller extends Controller
 {
     public function index()
     {
-        $programs = Program::all();
-        $yearLevels = YearLevel::all();
+    $departments = Department::all();
+    $programs = Program::all();
+    $yearLevels = YearLevel::all();
 
-        return view('auth.signup', compact('programs', 'yearLevels'));
-    }
+    return view('auth.signup', compact('departments', 'programs', 'yearLevels'));
+}
 
     public function store(Request $request)
     {

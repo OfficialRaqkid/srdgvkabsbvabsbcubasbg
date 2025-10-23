@@ -1,28 +1,22 @@
 <div class="az-content-left az-content-left-components">
     <div class="component-item">
-        <label>Admin Menu</label>
+        <label>Dean Menu</label>
         <nav class="nav flex-column">
-            <a href="" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <a href="" class="nav-link {{ request()->routeIs('dean.dashboard') ? 'active' : '' }}">
                 <i class="typcn typcn-home"></i> Dashboard
             </a>
-            <a href="javascript:void(0);" 
-            class="nav-link {{ request()->routeIs('admin.users') ? 'active' : '' }}" 
-            data-toggle="modal" 
-            data-target="#addUserModal">
-                <i class="typcn typcn-user-add"></i> Manage Users
+            <a href="{{ route('library_in_charge.clearances.index') }}" 
+            class="nav-link {{ request()->routeIs('library_in_charge.clearances.index') ? 'active' : '' }}">
+            <i class="typcn typcn-document-add"></i> Sign Requests
             </a>
+            <a href="" class="nav-link {{ request()->routeIs('dean.history') ? 'active' : '' }}">
+                <i class="typcn typcn-time"></i> Clearance History
             </a>
-            <a href="" class="nav-link {{ request()->routeIs('admin.clearance-types') ? 'active' : '' }}">
-                <i class="typcn typcn-document-text"></i> Clearance Types
+            <a href="" class="nav-link {{ request()->routeIs('dean.reports') ? 'active' : '' }}">
+                <i class="typcn typcn-chart-bar-outline"></i> Reports
             </a>
-            <a href="{{ route('admin.system-logs') }}" 
-            class="nav-link {{ request()->routeIs('admin.system-logs') ? 'active' : '' }}">
-                <i class="typcn typcn-time"></i> System Logs
-            </a>
-
-            </a>
-            <a href="" class="nav-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
-                <i class="typcn typcn-cog"></i> Settings
+            <a href="" class="nav-link {{ request()->routeIs('dean.profile') ? 'active' : '' }}">
+                <i class="typcn typcn-user"></i> Profile
             </a>
         </nav>
     </div>

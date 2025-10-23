@@ -44,8 +44,15 @@
                         <span>VP - SAS</span>
                     </div>
                     <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
-                    <a href="" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Sign Out</a>
-                </div>
+<a href="{{ route('vp_sas.logout') }}" 
+   class="dropdown-item text-danger"
+   onclick="event.preventDefault(); document.getElementById('logout-form-vp-sas').submit();">
+   <i class="typcn typcn-power-outline"></i> Sign Out
+</a>
+
+<form id="logout-form-vp-sas" action="{{ route('vp_sas.logout') }}" method="POST" class="d-none">
+    @csrf
+</form>                </div>
             </div>
         </div>
     </div>

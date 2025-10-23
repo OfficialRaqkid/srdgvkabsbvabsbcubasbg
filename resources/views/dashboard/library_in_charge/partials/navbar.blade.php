@@ -4,35 +4,32 @@
             <a href="" class="az-logo"><span></span> iClear</a>
             <a href="" id="azMenuShow" class="az-header-menu-icon d-lg-none"><span></span></a>
         </div>
+
         <div class="az-header-menu">
             <ul class="nav">
-                <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <li class="nav-item active">
                     <a href="" class="nav-link">
                         <i class="typcn typcn-home-outline"></i> Dashboard
                     </a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('admin.users') ? 'active' : '' }}">
+                <li class="nav-item">
                     <a href="" class="nav-link">
-                        <i class="typcn typcn-user-add"></i> Manage Users
+                        <i class="typcn typcn-document-add"></i> Sign Requests
                     </a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('admin.clearance-types') ? 'active' : '' }}">
+                <li class="nav-item">
                     <a href="" class="nav-link">
-                        <i class="typcn typcn-document-text"></i> Clearance Types
+                        <i class="typcn typcn-time"></i> Clearance History
                     </a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('admin.system-logs') ? 'active' : '' }}">
+                <li class="nav-item">
                     <a href="" class="nav-link">
-                        <i class="typcn typcn-time"></i> System Logs
-                    </a>
-                </li>
-                <li class="nav-item {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
-                    <a href="" class="nav-link">
-                        <i class="typcn typcn-cog"></i> Settings
+                        <i class="typcn typcn-chart-bar-outline"></i> Department Reports
                     </a>
                 </li>
             </ul>
         </div>
+
         <div class="az-header-right">
             <div class="az-header-message">
                 <a href="#"><i class="typcn typcn-messages"></i></a>
@@ -49,10 +46,10 @@
                     <div class="az-header-profile">
                         <div class="az-img-user"><img src="{{ asset('img/faces/face1.jpg') }}" alt=""></div>
                         <h6></h6>
-                        <span>Administrator</span>
+                        <span>Dean / Chairperson</span>
                     </div>
                     <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
-<a href="{{ route('logout.admin') }}" class="dropdown-item"
+                <a href="{{ route('logout.admin') }}" class="dropdown-item"
     onclick="event.preventDefault(); document.getElementById('logout-form-admin').submit();">
     <i class="typcn typcn-power-outline"></i> Sign Out
 </a>

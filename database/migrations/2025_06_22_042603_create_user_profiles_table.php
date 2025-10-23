@@ -19,10 +19,8 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('suffix')->nullable();
             $table->string('academic_title')->nullable();
-            $table->string('profile_photo')->nullable();
-            
+            $table->string('profile_photo')->nullable();            
             $table->foreignId('program_id')->nullable()->constrained('programs')->onDelete('cascade');
-
             $table->timestamps();
         });
     }

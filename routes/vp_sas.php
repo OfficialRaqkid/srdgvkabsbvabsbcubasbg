@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VpSas\VpSasDashboardController;
-use App\Http\Controllers\Auth\SigninUserController;
+use App\Http\Controllers\Auth\SigninUserContoroller;
 use App\Http\Controllers\Office\ClearanceApprovalController;
 
 // 🧭 VP-SAS Dashboard
@@ -16,7 +16,7 @@ Route::prefix('vp_sas')
             ->name('dashboard');
 
         // 🚪 Logout
-        Route::post('/logout', [SigninUserController::class, 'destroy'])
+        Route::post('/logout', [SigninUserContoroller::class, 'destroy'])
             ->name('logout');
 
         // 📋 Clearance Requests (VP-SAS side)

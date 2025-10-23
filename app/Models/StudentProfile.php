@@ -24,25 +24,22 @@ class StudentProfile extends Model
         'profile_photo',
     ];
 
-    // ✅ Belongs to a user
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // ✅ Belongs to a program
     public function program()
     {
         return $this->belongsTo(Program::class);
     }
 
-    // ✅ Belongs to a year level
     public function yearLevel()
     {
         return $this->belongsTo(YearLevel::class);
     }
 
-    // ✅ Has many clearance requests
+    // ✅ Corrected relationship (use student_id instead of user_id)
     public function clearanceRequests()
     {
         return $this->hasMany(ClearanceRequest::class, 'student_id');

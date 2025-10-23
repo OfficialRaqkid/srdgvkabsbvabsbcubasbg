@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BusinessOffice\BusinessOfficeDashboardController;
 use App\Http\Controllers\BusinessOffice\ClearanceController;
-use App\Http\Controllers\Office\ClearanceApprovalController; // 👈 Add this line
+use App\Http\Controllers\Office\ClearanceApprovalController;
 
 // ✅ All Business Office routes grouped together
 Route::prefix('business-office')
@@ -11,28 +11,36 @@ Route::prefix('business-office')
     ->name('business_office.')
     ->group(function () {
 
-        // 🏠 Dashboard
+        /**
+         * 🏠 Dashboard
+         */
         Route::get('/dashboard', [BusinessOfficeDashboardController::class, 'index'])
             ->name('dashboard');
 
-        Route::post('logout', [BusinessOfficeDashboardController::class, 'logout'])
+        // 🚪 Logout
+        Route::post('/logout', [BusinessOfficeDashboardController::class, 'logout'])
             ->name('logout');
 
-        // 📋 Clearances
+        /**
+         * 📋 Clearance Management (Posting / Activating)
+         */
         Route::get('/clearances', [ClearanceController::class, 'index'])
             ->name('clearances.index');
 
-        // ✅ Activate published clearance (visible to students)
+        // ✅ Activate a published clearance (visible to students)
         Route::post('/clearances/{clearance}/activate', [ClearanceController::class, 'activate'])
             ->name('clearances.activate');
 
-        // 🧾 Clearance Requests Approval (Accounting Flow)
-        Route::get('/clearance-requests', [ClearanceApprovalController::class, 'accountingIndex'])
-            ->name('clearances.requests.index');
+        /**
+         * 🧾 Clearance Requests Approval (Signing / Holding)
+         * — This is where the Business Office signs student requests.
+         */
+        Route::get('/clearance-requests', [ClearanceApprovalController::class, 'businessOfficeIndex'])
+            ->name('clearance_requests.index');
 
-        Route::post('/clearance-requests/{id}/accept', [ClearanceApprovalController::class, 'accountingAccept'])
-            ->name('clearances.requests.accept');
+        Route::post('/clearance-requests/{id}/accept', [ClearanceApprovalController::class, 'businessOfficeAccept'])
+            ->name('clearance_requests.accept');
 
-        Route::post('/clearance-requests/{id}/hold', [ClearanceApprovalController::class, 'accountingHold'])
-            ->name('clearances.requests.hold');
+        Route::post('/clearance-requests/{id}/hold', [ClearanceApprovalController::class, 'businessOfficeHold'])
+            ->name('clearance_requests.hold');
     });

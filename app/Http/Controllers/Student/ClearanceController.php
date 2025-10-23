@@ -34,8 +34,9 @@ class ClearanceController extends Controller
             'student_id' => $student->studentProfile->id,
             'clearance_id' => $id,
             'status' => 'pending',
-            'current_office' => 'business_office',
+            'current_office' => 'library_in_charge',
         ]);
+
 
         return redirect()->back()->with('success', 'Your clearance request has been submitted!');
     }

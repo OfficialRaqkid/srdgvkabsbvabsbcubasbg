@@ -5,8 +5,9 @@
             <a href="" class="nav-link {{ request()->routeIs('dean.dashboard') ? 'active' : '' }}">
                 <i class="typcn typcn-home"></i> Dashboard
             </a>
-            <a href="" class="nav-link {{ request()->routeIs('dean.pending') ? 'active' : '' }}">
-                <i class="typcn typcn-document"></i> Sign Requests
+            <a href="{{ route('dean.clearances.index') }}" 
+                class="nav-link {{ request()->routeIs('dean.clearances.index') ? 'active' : '' }}">
+                <i class="typcn typcn-document-add"></i> Sign Requests
             </a>
             <a href="" class="nav-link {{ request()->routeIs('dean.history') ? 'active' : '' }}">
                 <i class="typcn typcn-time"></i> Clearance History

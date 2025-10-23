@@ -37,6 +37,15 @@
                 </div>
 
                 <!-- Program and Year Level -->
+                            <div class="form-group">
+                <label for="department_id">Department*</label>
+                <select name="department_id" class="form-control" required>
+                    <option value="" disabled selected>Select Department</option>
+                    @foreach ($departments as $department)
+                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    @endforeach
+                </select>
+            </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="program_id">Program*</label>
