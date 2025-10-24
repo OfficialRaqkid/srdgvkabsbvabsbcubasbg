@@ -1,46 +1,27 @@
-# Stage 1: Build frontend
-FROM node:20 AS frontend
-
-# Set working directory
-WORKDIR /app
-
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm install
-
-# Copy all project files
-COPY . .
-
-# Stage 2: Laravel + Node runtime
+# Use an official PHP image with Node and Composer installed
 FROM php:8.2-cli
 
-# Install system dependencies and PHP extensions
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    unzip \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
+    git unzip curl libpng-dev libonig-dev libxml2-dev nodejs npm \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Install Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-# Copy project files from the previous stage
+# Set working directory
 WORKDIR /var/www/html
-COPY --from=frontend /app .
+
+# Copy all files to container
+COPY . .
 
 # Install PHP dependencies
-RUN composer install --no-interaction --prefer-dist
+RUN curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer && \
+    composer install
 
-# Expose Laravel’s and Vite’s ports
+# Install Node dependencies
+RUN npm install
+
+# Expose Laravel (8000) and Vite (5173) ports
 EXPOSE 8000 5173
 
-# Copy startup script
-COPY start.sh /usr/local/bin/start.sh
-RUN chmod +x /usr/local/bin/start.sh
-
-# Run both servers
-CMD ["bash", "/usr/local/bin/start.sh"]
+# Run npm dev and Laravel serve together
+CMD bash -c "npm run dev & php artisan serve --host=0.0.0.0 --port=8000"
